@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events | Meetup Clone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="events.css" />
+  <link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+</head>
+
+<body>
+  <header class="site-header">
+    <img src="images/Link - Meetup logo.png" alt="Meetup Logo" class="logo" />
+    <div class="search-container">
+
+      <input id="searchInput" type="text" placeholder="Search events" />
+             <div class="mobile-search-icon">
+    <!-- SVG иконка лупы -->
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z"/></svg>
+  </div>
+      <div class="city-search">
+        <input id="citySearchInput" type="text" placeholder="Search City" />
+        <div class="search-icon-wrapper">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-search"
+            viewBox="0 0 24 24"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="auth-buttons">
+      <button>Log in</button>
+      <button class="signup">Sign up</button>
+    </div>
+  </header>
+
+  <div class="main-content">
+  <div class="filters-wrapper">
+    <h1>Events near <span id="selected-city">All Cities</span></h1>
+    <div class="filters">
+      <select id="city-filter">
+        <option value="All">All Cities</option>
+        <option value="New York">New York</option>
+        <option value="Los Angeles">Los Angeles</option>
+        <option value="New Hannover">New Hannover</option>
+        <option value="Washington">Washington</option>
+        <option value="Las Vegas">Las Vegas</option>
+      </select>
+      <select id="distance-filter">
+        <option value="All">Any distance</option>
+        <option value="25">Up to 25 km</option>
+        <option value="50">Up to 50 km</option>
+        <option value="100">Up to 100 km</option>
+      </select>
+      <select id="type-filter">
+        <option value="All">Any type</option>
+        <option value="online">Online</option>
+        <option value="offline">Offline</option>
+      </select>
+      <select id="category-filter">
+        <option value="All">Any category</option>
+        <option value="Technology">Technology</option>
+        <option value="Business">Business</option>
+        <option value="Education">Education</option>
+        <option value="Health and Wellbeing">Health and Wellbeing</option>
+        <option value="Hobbies and Passions">Hobbies and Passions</option>
+        <option value="Social Activities">Social Activities</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="content-with-map">
+  <main id="events-container"></main>
+  <div class="map-section">
+    <p class="map-subtitle">Find events near</p>
+    <h3 id="map-title">Events in All Cities</h3>
+    <div class="map-wrapper">
+      <div id="map"></div>
+    </div>
+  </div>
+</div>
+  <footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-start-group">
+      <p>Create your own Meetup group.</p>
+      <button class="get-started-btn">Get Started</button>
+    </div>
+  </div>
+
+ <hr class="footer-divider" />
+
+  <div class="footer-columns">
+    <div class="footer-column">
+      <h4>Your Account</h4>
+      <ul>
+        <li><a href="#">Sign up</a></li>
+        <li><a href="#">Log in</a></li>
+        <li><a href="#">Help</a></li>
+        <li><a href="#">Become an Affiliate</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Discover</h4>
+      <ul>
+        <li><a href="#">Groups</a></li>
+        <li><a href="#">Calendar</a></li>
+        <li><a href="#">Topics</a></li>
+        <li><a href="#">Cities</a></li>
+        <li><a href="#">Online Events</a></li>
+        <li><a href="#">Local Guides</a></li>
+        <li><a href="#">Make Friends</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Meetup</h4>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Meetup Pro</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Apps</a></li>
+        <li><a href="#">Podcast</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-social">
+      <p>Follow us</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+    <div class="store-buttons">
+      <a href="#"><img src="images/Link - Download app from Google Play → download_en-US.svg.png" alt="Google Play" /></a>
+      <a href="#"><img src="images/download_en-US.svg fill.png" alt="App Store" /></a>
+    </div>
+  </div>
+
+  <div class="footer-legal">
+    <div class="footer-links">
+      <a>© 2024 Meetup</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Do Not Sell or Share My Personal Data</a>
+      <a href="#">Cookie Policy</a>
+      <a href="#">Help</a>
+    </div>
+  </div>
+</footer>
+
+  <script src="events.js"></script>
+</body>
+
+</html>
